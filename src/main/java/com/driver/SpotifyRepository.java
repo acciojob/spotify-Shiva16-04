@@ -235,8 +235,14 @@ public class SpotifyRepository {
         if(songLikeMap.get(oldSong).contains(oldUser)==false){
             songLikeMap.get(oldSong).add(oldUser);
             oldSong.setLikes(oldSong.getLikes()+1);
+            Album oldAlbum=null;
+            for(Album album: albumSongMap.keySet()){
+                if(albumSongMap.get(album).contains(oldSong)==true){
+                    oldAlbum=album;
+                }
+            }
             for(Artist artist:artistAlbumMap.keySet()){
-                if(artistAlbumMap.get(artist).contains(oldSong)){
+                if(artistAlbumMap.get(artist).contains(oldAlbum)){
                     artist.setLikes(artist.getLikes()+1);
                     break;
                 }
